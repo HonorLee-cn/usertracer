@@ -1,0 +1,21 @@
+{
+  "name": "usertracer",
+  "version": "1.0.0",
+  "description": "User action tracer for chh",
+  "main": "usertracer.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "ejs":"latest",
+    "tracer":">=0.8.0",
+    "mongodb":"latest",
+    "mime-types":"latest",
+    "fs-extra":"latest"
+  },
+  "engines": {
+    "node": ">=0.12.5"
+  },
+  "author": "HonorLee",
+  "license": "ISC"
+}
