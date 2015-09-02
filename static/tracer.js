@@ -28,7 +28,7 @@ setCookie('_readTime',traceTime.getTime(),expressDate.toGMTString());
 $(function(){
     //页面标示
     var pageSign = $('meta[name=pagesign]').attr('content');
-    if(!pageSign) pagesign='99999999';
+    if(!pageSign) pageSign=window.location.href;
     //用户标示
     var userSign = $('meta[name=usersign]').attr('content');
     if(!userSign) userSign='99999999';
@@ -45,7 +45,6 @@ $(function(){
         url:'http://test.honorlee.me:8080/tracer',
         method:'GET'
     });
-    console.log(data);
 })
 /*******************************************/
 }
