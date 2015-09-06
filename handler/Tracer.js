@@ -11,7 +11,8 @@ var Tracer = {
             if(result.length>0){
                 Tracer.addStep(args);
             }else{
-                MongoDB.insert({tracerID:args.tracerid,step:[],userSign:args.usersign,enterURL:args.enterurl,ip:args.ip,agent:args.agent},function(err,result){
+                var enterTime = Number(args.tracerid.substr(0,args.tracerid.length-6));
+                MongoDB.insert({tracerID:args.tracerid,step:[],enterTime:enterTime,userSign:args.usersign,enterURL:args.enterurl,ip:args.ip,agent:args.agent},function(err,result){
                     Tracer.addStep(args);
                 });
             }
