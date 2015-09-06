@@ -66,3 +66,14 @@ function setCookie(c_name,c_value,c_exp){
     var exp = c_exp?';expires='+c_exp:'';
     document.cookie = c_name+'='+c_value+exp+';path=/';
 }
+
+window.chhutracer = {
+    addStep:function(obj){
+        obj.tracerid = tracerID;
+        $.ajax({
+            data:obj,
+            url:'https://tracer.chh.la/tracer/addstep',
+            method:'GET'
+        });
+    }
+}
