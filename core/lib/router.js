@@ -19,12 +19,11 @@ var Router ={
     getHandler:function(url,res,req){
         var URLParse = URL.parse(HANDLERPATH+url,true);
         var URLArr = URLParse.pathname.split('/');
+//console.log(URLArr)
         if(URLArr[URLArr.length-1]=='') URLArr[URLArr.length-1]='index';
         var FileName = URLArr.join('/')+'.js';
         var mod,call='index';
-        //console.log(FileName);
         if(!FILE.existsSync(FileName)){
-
             call = URLArr.pop();
             FileName = URLArr.join('/')+'.js';
         }

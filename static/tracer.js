@@ -1,4 +1,4 @@
-var watchHost = 'test.chh.la';
+var watchHost = 'www.caihuohuo.cn';
 if(window.location.href.match(watchHost)){
 /*******************************************/
 //当前跟踪时间
@@ -42,7 +42,7 @@ $(function(){
     }
     $.ajax({
         data:data,
-        url:'http://test.honorlee.me:8080/tracer',
+        url:'https://tracer.chh.la/tracer',
         method:'GET'
     });
 })

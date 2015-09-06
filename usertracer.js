@@ -2,10 +2,10 @@ global.ROOTPATH = __dirname;
 require('./core/config.js');
 require('mongodb').MongoClient.connect(MongoURL,function(err,db){
     if(err) return;
-    global.MongoDB = db.collection('test');
+    global.MongoDB = db.collection('usertracer');
+    require('http').createServer(serverHandler).listen(8080);
 });
 
-require('http').createServer(serverHandler).listen(8080);
 function serverHandler(req,res){
     //global.RESPONSE = res;
     //global.REQUEST = req;
