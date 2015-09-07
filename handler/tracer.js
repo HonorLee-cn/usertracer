@@ -26,7 +26,7 @@ var Tracer = {
                 for(var i in countPage){
                     var match = args.enterurl.match(countPage[i]);
                     if(match){
-                        countDB.update({table:"enter"},{$inc:{match[0]:1}});
+                        countDB.update({table:"enter"},{$inc:{eval(match[0]):1}});
                         break;
                     }
                 }
@@ -58,7 +58,7 @@ var Tracer = {
         for(var i in countModify){
             var match = value.match(countPage[i]);
             if(match){
-                countDB.update({table:"modify"},{$inc:{match[0]:1}});
+                countDB.update({table:"modify"},{$inc:{eval(match[0]):1}});
                 break;
             }
         }
@@ -66,8 +66,3 @@ var Tracer = {
 }
 
 module.exports = Tracer;
-
-
-update({table:"action"},{$inc:{testkey:1}},true)
-
-args.enterurl
