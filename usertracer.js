@@ -2,7 +2,9 @@ global.ROOTPATH = __dirname;
 require('./core/config.js');
 require('mongodb').MongoClient.connect(MongoURL,function(err,db){
     if(err) return;
-    global.MongoDB = db.collection('usertracer');
+    global.MongoDB = db;
+    global.tracerDB = db.collection('usertracer');
+    global.countDB = db.collection('count');
     require('http').createServer(serverHandler).listen(8080);
 });
 
