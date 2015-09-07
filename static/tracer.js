@@ -32,8 +32,7 @@ if (window.location.href.match(watchHost)) {
 
     traceTime = new Date();
     tracerID = getCookie('_tracerID');
-
-    enterURL = getCookie('_enterURL');
+    enterURL = getCookie('_enterURL');  // 首次进入的url 
     if (!enterURL) {
         enterURL = window.location.href;
     }
