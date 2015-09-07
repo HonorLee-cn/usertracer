@@ -28,7 +28,7 @@ var Tracer = {
                     var match = args.enterurl.match(countPage[i]);
                     if(match){
                         var inc = {};
-                        inc[match[0]]=1;
+                        inc[match[0].replace('.','_')]=1;
                         countDB.update({table:"enter"},{$inc:inc},{upsert:true});
                         break;
                     }
@@ -62,7 +62,7 @@ var Tracer = {
             var match = value.match(countPage[i]);
             if(match){
                 var inc = {};
-                inc[match[0]]=1;
+                inc[match[0].replace('.','_')]=1;
                 countDB.update({table:"modify"},{$inc:inc},{upsert:true});
                 break;
             }
