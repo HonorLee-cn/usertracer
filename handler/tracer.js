@@ -59,7 +59,7 @@ var Tracer = {
         var value = JSON.stringify(data);
         tracerDB.update({tracerID:tracerID},{$push:{step:{modify:value}}});
         for(var i in countModify){
-            var match = value.match(countPage[i]);
+            var match = value.match(countModify[i]);
             if(match){
                 var inc = {};
                 inc[match[0].replace('.','_')]=1;
