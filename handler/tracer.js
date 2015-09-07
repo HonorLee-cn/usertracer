@@ -1,6 +1,7 @@
 var countPage = [
     /Mobile\/User\/promotion\/promoCode/i,
-    /Mobile\/login\/share\/promoCode/i
+    /Mobile\/login\/share\/promoCode/i,
+    /Mobile\/Login\/share\.html\?promoCode/i
 ]
 var countModify = [
     /{"wx":"share"}/i
@@ -28,7 +29,7 @@ var Tracer = {
                     if(match){
                         var inc = {};
                         inc[match[0]]=1;
-                        countDB.update({table:"enter"},{$inc:inc},true);
+                        countDB.update({table:"enter"},{$inc:inc},{upsert:true});
                         break;
                     }
                 }
@@ -62,7 +63,7 @@ var Tracer = {
             if(match){
                 var inc = {};
                 inc[match[0]]=1;
-                countDB.update({table:"modify"},{$inc:inc},true);
+                countDB.update({table:"modify"},{$inc:inc},{upsert:true});
                 break;
             }
         }
