@@ -38,7 +38,7 @@ var Tracer = {
     _addModifyStep:function(data){
         var tracerID = data.tracerid;
         delete data.tracerid;
-        MongoDB.update({tracerID:data.tracerid},{$push:{step:{modify:JSON.stringify(data)}}}); 
+        MongoDB.update({tracerID:tracerID},{$push:{step:{modify:JSON.stringify(data)}}}); 
     }
 }
 
