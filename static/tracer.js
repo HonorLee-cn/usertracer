@@ -69,7 +69,7 @@ function setCookie(c_name,c_value,c_exp){
 
 window.chhutracer = {
     addStep:function(obj){
-        obj.tracerid = tracerID;
+        obj.tracerid = getCookie('_tracerID');
         $.ajax({
             data:obj,
             url:'https://tracer.chh.la/tracer/addstep',

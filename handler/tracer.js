@@ -1,6 +1,7 @@
 var Tracer = {
     index:function(res,req,args){
-        res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8','Access-Control-Allow-Origin':'http://test.chh.la'});
+        console.log(123);
+        res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8','Access-Control-Allow-Origin':'*'});
         res.end("");
         if(MongoDB==undefined || args.tracerid==undefined) return;
         args.agent = req.headers['user-agent'];
@@ -19,7 +20,7 @@ var Tracer = {
         });;
     },
     addstep:function(res,req,args){
-        res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8','Access-Control-Allow-Origin':'http://test.chh.la'});
+        res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8','Access-Control-Allow-Origin':'*'});
         res.end("");
         if(MongoDB==undefined || args.tracerid==undefined) return;
         MongoDB.find({tracerID:args.tracerid}).toArray(function(err,result){
