@@ -28,7 +28,7 @@ var Tracer = {
                     if(match){
                         var inc = {};
                         inc[match[0]]=1;
-                        countDB.update({table:"enter"},{$inc:inc});
+                        countDB.update({table:"enter"},{$inc:inc},true);
                         break;
                     }
                 }
@@ -62,7 +62,7 @@ var Tracer = {
             if(match){
                 var inc = {};
                 inc[match[0]]=1;
-                countDB.update({table:"modify"},{$inc:inc});
+                countDB.update({table:"modify"},{$inc:inc},true);
                 break;
             }
         }
