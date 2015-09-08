@@ -2,7 +2,7 @@
 var watchHost = 'www.caihuohuo.cn',
     traceTime,  // 当前跟踪时间
     tracerID,   // 唯一追踪ID
-    enterURL;
+    enterURL;   // 进入的URL
 
 //读COOKIE
 function getCookie(c_name) {
@@ -56,8 +56,8 @@ if (window.location.href.match(watchHost)) {
     $(function () {
         'use strict';
         
-        var pageSign = $('meta[name=pagesign]').attr('content'), // 页面标示
-            userSign, // 用户标示
+        var pageSign = $('meta[name=pagesign]').attr('content'), // 页面标示，暂无
+            userSign, // 用户标示，只有注册成功及个人中心首页有userSign
             data; //构造参数
         if (!pageSign) {
             pageSign = window.location.href;
@@ -69,8 +69,8 @@ if (window.location.href.match(watchHost)) {
         }
         
         data = {
-            tracerid : tracerID,
-            enterurl : enterURL,
+            tracerid : tracerID,    // 追踪ID
+            enterurl : enterURL,    // 
             jumptime : jumpTime,
             pagesign : pageSign,
             usersign : userSign

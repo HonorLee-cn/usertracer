@@ -1,12 +1,15 @@
 /*jslint nomen:true*/
-/*global require,module,URL,CONFIG,STATIC,ROOTPATH,Logger,HANDLERPATH,FILE*/
+/*global require,module,URL,CONFIG,STATIC,ROOTPATH,Logger,HANDLERPATH,FILE,console*/
 var Router = {
     go : function (url, res, req) {
         'use strict';
         var URLParse = URL.parse(url, true),
             URLArr = URLParse.pathname.split('/'),
             query = URLParse.query;
-
+        
+        console.log(url);
+        console.log(URLParse);
+        console.log(query);
         if (CONFIG.HandlerRules[URLArr[1]]) {
             return Router.getHandler(url, res, req);
         } else if (CONFIG.StaticRules[URLArr[1]]) {

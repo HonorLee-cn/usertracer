@@ -1,14 +1,16 @@
 /*jslint nomen:true*/
-/*global global,require,MongoURL,ROUTER,__dirname*/
+/*global global,require,MongoURL,ROUTER,__dirname,console*/
 
 global.ROOTPATH = __dirname;
 require('./core/config.js');
 require('mongodb').MongoClient.connect(MongoURL, function (err, db) {
     'use strict';
     if (err) {
+        console.log(err);
         return;
     }
     global.MongoDB = db.collection('usertracer');
+    console.log('success');
     require('http').createServer(function (req, res) {
         var COOKIE = {},
             requestFile;
@@ -21,5 +23,5 @@ require('mongodb').MongoClient.connect(MongoURL, function (err, db) {
         requestFile = req.url === '/' ? '/index' : req.url;
         req.cookie = COOKIE;
         ROUTER.go(requestFile, res, req, COOKIE);
-    }).listen(8080);
+    }).listen(8888, '127.0.0.1');
 });
