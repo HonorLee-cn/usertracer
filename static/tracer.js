@@ -1,5 +1,5 @@
-/*global window,$,unescape*/
-var watchHost = 'www.caihuohuo.cn',
+/*global window,$,unescape,console*/
+var watchHost = 'loc.caihuohuo.cn',
     traceTime,  // 当前跟踪时间
     tracerID,   // 唯一追踪ID
     enterURL;   // 进入的URL
@@ -29,7 +29,6 @@ function setCookie(c_name, c_value, c_exp) {
 }
 
 if (window.location.href.match(watchHost)) {
-
     traceTime = new Date();
     tracerID = getCookie('_tracerID');
     enterURL = getCookie('_enterURL');  // 首次进入的url 
@@ -77,8 +76,11 @@ if (window.location.href.match(watchHost)) {
         };
         $.ajax({
             data : data,
-            url : 'https://tracer.chh.la/tracer',
-            method : 'GET'
+            url : 'http://127.0.0.1:8888/tracer',
+            method : 'GET',
+            beforeSend : function () {
+                
+            }
         });
     });
 }
@@ -89,7 +91,7 @@ window.chhutracer = {
         obj.tracerid = getCookie('_tracerID');
         $.ajax({
             data : obj,
-            url : 'https://tracer.chh.la/tracer/addstep',
+            url : 'https://127.0.0.1:8888/tracer/addstep',
             method : 'GET'
         });
     }

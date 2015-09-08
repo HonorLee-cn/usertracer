@@ -7,9 +7,6 @@ var Router = {
             URLArr = URLParse.pathname.split('/'),
             query = URLParse.query;
         
-        console.log(url);
-        console.log(URLParse);
-        console.log(query);
         if (CONFIG.HandlerRules[URLArr[1]]) {
             return Router.getHandler(url, res, req);
         } else if (CONFIG.StaticRules[URLArr[1]]) {
@@ -37,7 +34,6 @@ var Router = {
         call = 'index';
         if (!FILE.existsSync(FileName)) {
             call = URLArr.pop();
-            FileName = URLArr.join('/') + '.js';
         }
         try {
             mod = require(FileName);
