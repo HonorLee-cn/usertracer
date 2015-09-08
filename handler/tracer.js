@@ -21,7 +21,7 @@ var Tracer = {
                 Tracer._addStep(args);
             }else{
                 var enterTime = parseInt(args.tracerid.substr(0,args.tracerid.length-6));
-                tracerDB.insert({tracerID:args.tracerid,step:[],enterTime:enterTime,userSign:args.usersign,enterURL:args.enterurl,ip:args.ip,agent:args.agent},function(err,result){
+                tracerDB.insert({tracerID:args.tracerid,step:[],enterTime:enterTime,userSign:[args.usersign],enterURL:args.enterurl,ip:args.ip,agent:args.agent},function(err,result){
                     Tracer._addStep(args);
                 });
                 for(var i in countPage){
@@ -50,8 +50,9 @@ var Tracer = {
         });;
     },
     _addStep:function(data){
-        if(data.usersign!=99999999) tracerDB.update({tracerID:data.tracerid},{$set:{userSign:data.usersign}});
-        tracerDB.update({tracerID:data.tracerid},{$push:{step:{jumpTime:data.jumptime,pageSign:data.pagesign}}}); 
+        //if(data.usersign!=99999999) tracerDB.update({tracerID:data.tracerid},{$set:{userSign:data.usersign}});
+        tracerDB.update({tracerID:data.tracerid},{$push:{step:{jumpTime:data.jumptime,pageSign:data.pagesign}}});
+        tracerDB.update({tracerID:data.tracerid,userSign:{$nin:data.usersign}},{$push:{userSign:data.usersign}});
     },
     _addModifyStep:function(data){
         var tracerID = data.tracerid;
