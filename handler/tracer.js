@@ -53,7 +53,7 @@ var Tracer = {
     },
     _addStep:function(data){
         //if(data.usersign!=99999999) tracerDB.update({tracerID:data.tracerid},{$set:{userSign:data.usersign}});
-        tracerDB.update({tracerID:data.tracerid,userSign:{$nin:["99999999",data.usersign]}},{$push:{userSign:data.usersign}});
+        tracerDB.update({tracerID:data.tracerid,userSign:{$nin:[data.usersign]}},{$push:{userSign:data.usersign}});
         tracerDB.update({tracerID:data.tracerid},{$push:{step:{jumpTime:data.jumptime,pageSign:data.pagesign}}});
         //tracerDB.update({tracerID:data.tracerid,userSign:{$nin:data.usersign}},{$push:{userSign:data.usersign}});
     },
