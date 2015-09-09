@@ -22,7 +22,7 @@ var Tracer = {
             }else{
                 var enterTime = parseInt(args.tracerid.substr(0,args.tracerid.length-6));
                 tracerDB.insert({tracerID:args.tracerid,step:[],enterTime:enterTime,userSign:[],enterURL:args.enterurl,ip:args.ip,agent:args.agent},function(err,result){
-                    tracerDB.update({tracerID:data.tracerid},{$push:{userSign:data.usersign}},function(){
+                    tracerDB.update({tracerID:args.tracerid},{$push:{userSign:args.usersign}},function(){
                         Tracer._addStep(args);
                     });
                 });
