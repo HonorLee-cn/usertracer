@@ -3,6 +3,11 @@
 var Tracer = {
     index: function (res, req, args) {
         'use strict';
+        MongoDB.find({tracerID: args.tracerid}, function (err, result) {
+            result.toArray(function (err1, result1) {
+                console.log(result1);
+            });
+        });
         res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8', 'Access-Control-Allow-Origin': '*'});
         res.end("");
         if (MongoDB === undefined || args.tracerid === undefined) {

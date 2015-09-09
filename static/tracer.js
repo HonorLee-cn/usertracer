@@ -1,8 +1,4 @@
 /*global window,$,unescape,console*/
-var watchHost = 'loc.caihuohuo.cn',
-    traceTime,  // 当前跟踪时间
-    tracerID,   // 唯一追踪ID
-    enterURL;   // 进入的URL
 
 //读COOKIE
 function getCookie(c_name) {
@@ -28,29 +24,34 @@ function setCookie(c_name, c_value, c_exp) {
     document.cookie = c_name + '=' + c_value + exp + ';path=/';
 }
 
-if (window.location.href.match(watchHost)) {
+var watchHost = 'loc.caihuohuo.cn',
+    traceTime,      // 当前跟踪时间
+    tracerID,       // 唯一追踪ID
+    enterURL,       // 首次进入的URL
+    overTime = 3,   // 超时时间 minutes
+    expressDate,    // 过期时间
+    lastReadTime,   // 上次访问时间
+    jumpTime;       // 跳转间隔时间
+
+if (window.location.hostname === watchHost) {
     traceTime = new Date();
+    expressDate = new Date(traceTime.getTime() + overTime * 60 * 1000);
+    
     tracerID = getCookie('_tracerID');
-    enterURL = getCookie('_enterURL');  // 首次进入的url 
+    enterURL = getCookie('_enterURL');
     if (!enterURL) {
         enterURL = window.location.href;
+        setCookie('_enterURL', enterURL, expressDate.toGMTString());
     }
-    //最大超时时间 min
-    var overTime = 3;
-    var expressDate = new Date();
-    expressDate.setTime(traceTime.getTime() + overTime * 60 * 1000);
     //首次或超出最大间隔时间视为首次进入
     if (!tracerID) {
         tracerID = traceTime.getTime().toString() + (Math.floor(Math.random() * (999999 - 100000) + 100000)).toString();
+        setCookie('_tracerID', tracerID, expressDate.toGMTString());
     }
-    setCookie('_enterURL', enterURL, expressDate.toGMTString());
-    setCookie('_tracerID', tracerID, expressDate.toGMTString());
-    //上次访问时间
-    var lastReadTime = getCookie('_readTime');
-    //跳转间隔时间
-    var jumpTime = lastReadTime ? (traceTime - lastReadTime) / 1000 : 0;
-    //覆盖当前时间
-    setCookie('_readTime', traceTime.getTime(), expressDate.toGMTString());
+    
+    lastReadTime = getCookie('_readTime');
+    jumpTime = lastReadTime ? (traceTime - lastReadTime) / 1000 : 0;
+    setCookie('_readTime', traceTime.getTime(), expressDate.toGMTString());     //覆盖当前时间
 
     $(function () {
         'use strict';
