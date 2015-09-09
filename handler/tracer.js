@@ -22,8 +22,9 @@ var Tracer = {
             }else{
                 var enterTime = parseInt(args.tracerid.substr(0,args.tracerid.length-6));
                 tracerDB.insert({tracerID:args.tracerid,step:[],enterTime:enterTime,userSign:[],enterURL:args.enterurl,ip:args.ip,agent:args.agent},function(err,result){
-                    tracerDB.update({tracerID:data.tracerid},{$push:{userSign:data.usersign}});
-                    Tracer._addStep(args);
+                    tracerDB.update({tracerID:data.tracerid},{$push:{userSign:data.usersign}},function(){
+                        Tracer._addStep(args);
+                    });
                 });
                 for(var i in countPage){
                     var match = args.enterurl.match(countPage[i]);
