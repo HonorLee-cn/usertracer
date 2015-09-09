@@ -30,7 +30,11 @@ var Tracer = {
                     var match = args.enterurl.match(countPage[i]);
                     if(match){
                         var inc = {};
-                        inc[match[0].replace('.','_')]=1;
+                        //inc[match[0].replace('.','_')]=1;
+                        var key = match[0].replace('.','_');
+                        var date = new Date();
+                        inc[key+'.total']=1;
+                        inc[key+'.date.'+date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate()]=1;
                         countDB.update({table:"enter"},{$inc:inc},{upsert:true});
                         break;
                     }
@@ -70,7 +74,7 @@ var Tracer = {
                 var date = new Date();
                 inc[key+'.total']=1;
                 inc[key+'.date.'+date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate()]=1;
-                inc[match[0].replace('.','_')+'']=1;
+                //inc[match[0].replace('.','_')+'']=1;
                 countDB.update({table:"modify"},{$inc:inc},{upsert:true});
                 countDB.update({table:"modify"},{$inc:inc},{upsert:true});
                 break;
