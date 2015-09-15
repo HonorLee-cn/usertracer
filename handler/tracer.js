@@ -62,17 +62,31 @@ var Tracer = {
     //来源跟踪
     _addReferer:function(referer){
         if(!referer) return;
+        var match = false;
         for(var i in CountRules.referer){
-            if(referer.match(CountRules.referer)){
+            if(referer.match(CountRules.referer[i])){
                 var inc = {};
                 var key = referer.replace('.','_');
                 var date = new Date();
                 inc[key+'.total']=1;
                 inc[key+'.date.'+date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate()]=1;
                 countDB.update({table:"referer"},{$inc:inc},{upsert:true});
+                match = true;
                 break;
             }
         }
+        if(!match) _addUntrackReferer(referer);
+    },
+    //记录未标记来源
+    _addUntrackReferer:function(referer){
+        if(referer.match(/www\.caihuohuo\.cn/i)) return;
+        var inc = {};
+        var key = referer.replace('.','_');
+        var date = new Date();
+        inc[key+'.total']=1;
+        inc[key+'.date.'+date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate()]=1;
+        countDB.update({table:"unReferered"},{$inc:inc},{upsert:true});
+        match = true;
     },
     _addStep:function(data){
         //if(data.usersign!=99999999) tracerDB.update({tracerID:data.tracerid},{$set:{userSign:data.usersign}});
