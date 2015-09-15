@@ -75,7 +75,7 @@ var Tracer = {
                 break;
             }
         }
-        if(!match) _addUntrackReferer(referer);
+        if(!match) Tracer._addUntrackReferer(referer);
     },
     //记录未标记来源
     _addUntrackReferer:function(referer){
