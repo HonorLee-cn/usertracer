@@ -3,7 +3,7 @@ global.CountRules = {
         /Mobile\/User\/promotion\/promoCode/i,
         /Mobile\/login\/share\/promoCode/i,
         /Mobile\/Login\/share\.html\?promoCode/i,
-        /www\.caihuohuo\.cn\/Register(\.html)?\?_p=fhndx/i
+        /_p=fhndx/i
     ],
     modify:[
         /{"wx":"share"}/i
