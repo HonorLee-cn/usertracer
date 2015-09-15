@@ -19,7 +19,7 @@ var Tracer = {
             if(err) return;
             //check referer
             var referer=req.headers.referer?req.headers.referer:null;
-            Tracer._addRefere(referer);
+            Tracer._addReferer(referer);
             //Add or new
             if(result.length>0){
                 Tracer._addStep(args);
@@ -30,8 +30,8 @@ var Tracer = {
                         Tracer._addStep(args);
                     });
                 });
-                for(var i in CountRules.page){
-                    var match = args.enterurl.match(CountRules.page[i]);
+                for(var i in CountRules.enter){
+                    var match = args.enterurl.match(CountRules.enter[i]);
                     if(match){
                         var inc = {};
                         //inc[match[0].replace('.','_')]=1;
@@ -60,7 +60,7 @@ var Tracer = {
         });;
     },
     //来源跟踪
-    _addRefere:function(referer){
+    _addReferer:function(referer){
         if(!referer) return;
         for(var i in CountRules.referer){
             if(referer.match(CountRules.referer)){
