@@ -35,7 +35,7 @@ var Tracer = {
                     if(match){
                         var inc = {};
                         //inc[match[0].replace('.','_')]=1;
-                        var key = match[0].replace('.','_');
+                        var key = match[0].replace(/\./g,'_');
                         var date = new Date();
                         inc[key+'.total']=1;
                         inc[key+'.date.'+date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate()]=1;
@@ -66,7 +66,7 @@ var Tracer = {
         for(var i in CountRules.referer){
             if(referer.match(CountRules.referer[i])){
                 var inc = {};
-                var key = referer.replace('.','_');
+                var key = referer.replace(/\./g,'_');
                 var date = new Date();
                 inc[key+'.total']=1;
                 inc[key+'.date.'+date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate()]=1;
@@ -81,7 +81,7 @@ var Tracer = {
     _addUntrackReferer:function(referer){
         if(referer.match(/www\.caihuohuo\.cn/i)) return;
         var inc = {};
-        var key = referer.replace('.','_');
+        var key = referer.replace(/\./g,'_');
         var date = new Date();
         inc[key+'.total']=1;
         inc[key+'.date.'+date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate()]=1;
@@ -103,7 +103,7 @@ var Tracer = {
             var match = value.match(CountRules.modify[i]);
             if(match){
                 var inc = {};
-                var key = match[0].replace('.','_');
+                var key = match[0].replace(/\./g,'_');
                 var date = new Date();
                 inc[key+'.total']=1;
                 inc[key+'.date.'+date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate()]=1;
