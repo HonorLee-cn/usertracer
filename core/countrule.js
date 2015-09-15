@@ -2,12 +2,16 @@ global.CountRules = {
     page:[
         /Mobile\/User\/promotion\/promoCode/i,
         /Mobile\/login\/share\/promoCode/i,
-        /Mobile\/Login\/share\.html\?promoCode/i
+        /Mobile\/Login\/share\.html\?promoCode/i,
+        /www\.caihuohuo\.cn\/Register\.html\?_p=fhndx/i
     ],
     modify:[
         /{"wx":"share"}/i
     ],
     referer:[
+        //测试来源
+        /www\.caihuohuo\.cn\/demo/i,
+        //站外来源
         /www\.qq\.com/i,
         /www\.sina\.com\.cn/i,
         /www\.sohu\.com/i,
