@@ -17,13 +17,13 @@ var Tracer = {
         //MongoDB.collection('test').insert({traceID:data.traceid,step:[],ddd:2},function(){
         tracerDB.find({tracerID:args.tracerid}).toArray(function(err,result){
             if(err) return;
-            //check referer
-            var referer=req.headers.referer?req.headers.referer:null;
-            Tracer._addReferer(referer);
             //Add or new
             if(result.length>0){
                 Tracer._addStep(args);
             }else{
+                //check referer
+                var referer=req.headers.referer?req.headers.referer:null;
+                Tracer._addReferer(referer);
                 var enterTime = parseInt(args.tracerid.substr(0,args.tracerid.length-6));
                 tracerDB.insert({tracerID:args.tracerid,step:[],enterTime:enterTime,userSign:[],enterURL:args.enterurl,ip:args.ip,agent:args.agent,referer:referer},function(err,result){
                     tracerDB.update({tracerID:args.tracerid},{$push:{userSign:args.usersign}},function(){
