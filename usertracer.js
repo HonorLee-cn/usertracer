@@ -1,5 +1,7 @@
 global.ROOTPATH = __dirname;
 require('./core/config.js');
+require('./core/countrule.js');
+
 require('mongodb').MongoClient.connect(MongoURL,function(err,db){
     if(err) return;
     global.MongoDB = db;
