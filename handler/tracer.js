@@ -86,13 +86,26 @@ var Tracer = {
         inc[key+'.total']=1;
         inc[key+'.date.'+date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate()]=1;
         countDB.update({table:"unReferered"},{$inc:inc},{upsert:true});
-        match = true;
     },
     _addStep:function(data){
         //if(data.usersign!=99999999) tracerDB.update({tracerID:data.tracerid},{$set:{userSign:data.usersign}});
         tracerDB.update({tracerID:data.tracerid,userSign:{$nin:[data.usersign]}},{$push:{userSign:data.usersign}});
         tracerDB.update({tracerID:data.tracerid},{$push:{step:{jumpTime:data.jumptime,pageSign:data.pagesign}}});
         //tracerDB.update({tracerID:data.tracerid,userSign:{$nin:data.usersign}},{$push:{userSign:data.usersign}});
+        for(var i in CountRules.page){
+            var match = value.match(CountRules.page[i]);
+            if(match){
+                var inc = {};
+                var key = data.pagesign.replace(/\./g,'_');
+                var date = new Date();
+                inc[key+'.total']=1;
+                inc[key+'.date.'+date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate()]=1;
+                //inc[match[0].replace('.','_')+'']=1;
+                //countDB.update({table:"modify"},{$inc:inc},{upsert:true});
+                countDB.update({table:"page"},{$inc:inc},{upsert:true});
+                break;
+            }
+        }
     },
     _addModifyStep:function(data){
         var tracerID = data.tracerid;

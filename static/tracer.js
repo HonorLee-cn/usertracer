@@ -1,5 +1,5 @@
-var watchHost = 'www.caihuohuo.cn';
-if(window.location.href.match(watchHost)){
+//var watchHost = ['www.caihuohuo.cn';
+//if(window.location.href.match(watchHost)){
 /*******************************************/
 //当前跟踪时间
 var traceTime = new Date();

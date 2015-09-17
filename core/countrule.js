@@ -3,7 +3,12 @@ global.CountRules = {
         /Mobile\/User\/promotion\/promoCode/i,
         /Mobile\/login\/share\/promoCode/i,
         /Mobile\/Login\/share\.html\?promoCode/i,
-        /_p=fhndx/i
+        /_p=fhndx/i,
+        
+        /api\.caihuohuo\.cn\/static\/ads\/hz1\/index\.html/i
+    ],
+    page:[
+        /caihuohuo\.cn\/activity/i,
     ],
     modify:[
         /{"wx":"share"}/i
@@ -12,15 +17,15 @@ global.CountRules = {
         //测试来源
         /www\.caihuohuo\.cn\/demo/i,
         //站外来源
-        /www\.qq\.com/i,
-        /www\.sina\.com\.cn/i,
-        /www\.sohu\.com/i,
+        /qq\.com/i,
+        /sina\.com\.cn/i,
+        /sohu\.com/i,
         /www\.cntv\.cn/i,
         /www\.xinhuanet\.com/i,
         /www\.people\.com\.cn/i,
         /www\.china\.com\.cn/i,
-        /www\.163\.com/i,
-        /news\.baidu\.com/i,
+        /163\.com/i,
+        /baidu\.com/i,
         /www\.ifeng\.com/i,
         /www\.p5w\.net/i,
         /www\.10jqka\.com\.cn/i,
