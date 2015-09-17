@@ -93,7 +93,7 @@ var Tracer = {
         tracerDB.update({tracerID:data.tracerid},{$push:{step:{jumpTime:data.jumptime,pageSign:data.pagesign}}});
         //tracerDB.update({tracerID:data.tracerid,userSign:{$nin:data.usersign}},{$push:{userSign:data.usersign}});
         for(var i in CountRules.page){
-            var match = value.match(CountRules.page[i]);
+            var match = data.pagesign.match(CountRules.page[i]);
             if(match){
                 var inc = {};
                 var key = data.pagesign.replace(/\./g,'_');
