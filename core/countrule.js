@@ -4,11 +4,11 @@ global.CountRules = {
         /Mobile\/login\/share\/promoCode/i,
         /Mobile\/Login\/share\.html\?promoCode/i,
         /_p=fhndx/i,
-        
         /api\.caihuohuo\.cn\/static\/ads\/hz1\/index\.html/i
     ],
     page:[
         /caihuohuo\.cn\/activity/i,
+        /api\.caihuohuo\.cn\/static\/ads\/hz1\/index\.html/i
     ],
     modify:[
         /{"wx":"share"}/i
