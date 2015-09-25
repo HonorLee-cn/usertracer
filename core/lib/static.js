@@ -10,7 +10,9 @@ var Static = {
             return false;  
         }
         if(ext.match(/png|jpg|jpeg|gif/)){
-            return IMAGE.load(URL.parse(REQUEST.url,true).pathname,ext,query,res);
+            res.writeHead(404, {'Content-Type': 'text/html'});
+            res.end(404);
+            //return IMAGE.load(URL.parse(REQUEST.url,true).pathname,ext,query,res);
         }else if(FILE.existsSync(url)){
             var data;
             if(ext.match(/txt|js|css|html|json/)){
