@@ -11,7 +11,8 @@ global.CountRules = {
         /api\.caihuohuo\.cn\/static\/ads\/hz1\/index\.html/i
     ],
     modify:[
-        /{"wx":"share"}/i
+        /{"wx":"share"}/i,
+        /"tg":/i
     ],
     referer:[
         //测试来源
