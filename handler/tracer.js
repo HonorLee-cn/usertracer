@@ -116,7 +116,7 @@ var Tracer = {
             var match = value.match(CountRules.modify[i]);
             if(match){
                 var inc = {};
-                var key = match[0].replace(/\./g,'_');
+                var key = value.replace(/\./g,'_');
                 var date = new Date();
                 inc[key+'.total']=1;
                 inc[key+'.date.'+date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate()]=1;
