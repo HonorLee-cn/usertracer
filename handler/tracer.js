@@ -39,7 +39,10 @@ var Tracer = {
                         var date = new Date();
                         inc[key+'.total']=1;
                         inc[key+'.date.'+date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate()]=1;
-                        countDB.update({table:"enter"},{$inc:inc,$set:{url:match[0]}},{upsert:true});
+                        
+                        var set = {};
+                        set[key+'.url']=match[0];
+                        countDB.update({table:"enter"},{$inc:inc,$set:set},{upsert:true});
                         break;
                     }
                 }
@@ -70,7 +73,10 @@ var Tracer = {
                 var date = new Date();
                 inc[key+'.total']=1;
                 inc[key+'.date.'+date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate()]=1;
-                countDB.update({table:"referer"},{$inc:inc,$set:{url:referer}},{upsert:true});
+
+                var set = {};
+                set[key+'.url']=referer;
+                countDB.update({table:"referer"},{$inc:inc,$set:set},{upsert:true});
                 match = true;
                 break;
             }
@@ -102,7 +108,9 @@ var Tracer = {
                 inc[key+'.date.'+date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate()]=1;
                 //inc[match[0].replace('.','_')+'']=1;
                 //countDB.update({table:"modify"},{$inc:inc},{upsert:true});
-                countDB.update({table:"page"},{$inc:inc,$set:{url:data.pagesign}},{upsert:true});
+                var set = {};
+                set[key+'.url']=data.pagesign;
+                countDB.update({table:"page"},{$inc:inc,$set:set},{upsert:true});
                 break;
             }
         }
@@ -122,7 +130,9 @@ var Tracer = {
                 inc[key+'.date.'+date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate()]=1;
                 //inc[match[0].replace('.','_')+'']=1;
                 //countDB.update({table:"modify"},{$inc:inc},{upsert:true});
-                countDB.update({table:"modify"},{$inc:inc,$set:{url:value}},{upsert:true});
+                var set = {};
+                set[key+'.url']=value;
+                countDB.update({table:"modify"},{$inc:inc,$set:set},{upsert:true});
                 break;
             }
         }
