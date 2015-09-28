@@ -39,7 +39,7 @@ var Tracer = {
                         var date = new Date();
                         inc[key+'.total']=1;
                         inc[key+'.date.'+date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate()]=1;
-                        countDB.update({table:"enter"},{$inc:inc},{upsert:true});
+                        countDB.update({table:"enter"},{$inc:inc,$set:{url:match[0]}},{upsert:true});
                         break;
                     }
                 }
@@ -70,7 +70,7 @@ var Tracer = {
                 var date = new Date();
                 inc[key+'.total']=1;
                 inc[key+'.date.'+date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate()]=1;
-                countDB.update({table:"referer"},{$inc:inc},{upsert:true});
+                countDB.update({table:"referer"},{$inc:inc,$set:{url:referer}},{upsert:true});
                 match = true;
                 break;
             }
@@ -102,7 +102,7 @@ var Tracer = {
                 inc[key+'.date.'+date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate()]=1;
                 //inc[match[0].replace('.','_')+'']=1;
                 //countDB.update({table:"modify"},{$inc:inc},{upsert:true});
-                countDB.update({table:"page"},{$inc:inc},{upsert:true});
+                countDB.update({table:"page"},{$inc:inc,$set:{url:data.pagesign}},{upsert:true});
                 break;
             }
         }
@@ -122,10 +122,13 @@ var Tracer = {
                 inc[key+'.date.'+date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate()]=1;
                 //inc[match[0].replace('.','_')+'']=1;
                 //countDB.update({table:"modify"},{$inc:inc},{upsert:true});
-                countDB.update({table:"modify"},{$inc:inc},{upsert:true});
+                countDB.update({table:"modify"},{$inc:inc,$set:{url:value}},{upsert:true});
                 break;
             }
         }
+    },
+    _addCount:function(table){
+
     }
 }
 
