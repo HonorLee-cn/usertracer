@@ -4,7 +4,8 @@ global.CountRules = {
         /Mobile\/login\/share\/promoCode/i,
         /Mobile\/Login\/share\.html\?promoCode/i,
         /_p=fhndx/i,
-        /api\.caihuohuo\.cn\/static\/share/i
+        /share\/hz1\/index\.html\?_f=fzsj/i,
+        /share\/sh1\/index\.html\?_f=fzshjz/i
     ],
     page:[
         /caihuohuo\.cn\/activity/i,

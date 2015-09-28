@@ -9,7 +9,7 @@ var tracerID = getCookie('_tracerID');
 var enterURL = getCookie('_enterURL');
 if(!enterURL) enterURL=window.location.href;
 //最大超时时间 min
-var overTime = 3;
+var overTime = 10;
 var expressDate = new Date();
     expressDate.setTime(traceTime.getTime()+overTime*60*1000);
 //首次或超出最大间隔时间视为首次进入
