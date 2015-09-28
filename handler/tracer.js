@@ -33,21 +33,22 @@ var Tracer = {
                 for(var i in CountRules.enter){
                     var match = args.enterurl.match(CountRules.enter[i]);
                     if(match){
-                        var inc = {};
-                        //inc[match[0].replace('.','_')]=1;
+                        // var inc = {};
+                        // //inc[match[0].replace('.','_')]=1;
 
-                        //var key = match[0].replace(/\./g,'_');
-                        var url = match[0];
-                        var date = new Date();
-                        var dateString = date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate();
-                        inc['list.$.total']=1;
-                        inc['list.$.date.'+dateString]=1;
-                        //inc[key+'.total']=1;
-                        //inc[key+'.date.'+date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate()]=1;
-                        //update({a:2,"url.u":/sh1/i},{$set:{"url.$":2}})
-                        var set = {};
-                        set['list.$.url']=url;
-                        countDB.update({table:"enter","list.url":url},{$inc:inc,$set:set},{upsert:true});
+                        // //var key = match[0].replace(/\./g,'_');
+                        // var url = match[0];
+                        // var date = new Date();
+                        // var dateString = date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate();
+                        // inc['list.$.total']=1;
+                        // inc['list.$.date.'+dateString]=1;
+                        // //inc[key+'.total']=1;
+                        // //inc[key+'.date.'+date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate()]=1;
+                        // //update({a:2,"url.u":/sh1/i},{$set:{"url.$":2}})
+                        // var set = {};
+                        // set['list.$.url']=url;
+                        // countDB.update({table:"enter","list.url":url},{$inc:inc,$set:set},{upsert:true});
+                        Tracer._addCount('enter',match[0]);
                         break;
                     }
                 }
@@ -73,14 +74,15 @@ var Tracer = {
         var match = false;
         for(var i in CountRules.referer){
             if(referer.match(CountRules.referer[i])){
-                var inc = {},set = {};
-                var url = referer;
-                var date = new Date();
-                var dateString = date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate();
-                inc['list.$.total']=1;
-                inc['list.$.date.'+dateString]=1;
-                set['list.$.url']=url;
-                countDB.update({table:"referer"},{$inc:inc,$set:set},{upsert:true});
+                // var inc = {},set = {};
+                // var url = referer;
+                // var date = new Date();
+                // var dateString = date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate();
+                // inc['list.$.total']=1;
+                // inc['list.$.date.'+dateString]=1;
+                // set['list.$.url']=url;
+                // countDB.update({table:"referer"},{$inc:inc,$set:set},{upsert:true});
+                Tracer._addCount('referer',referer);
                 match = true;
                 break;
             }
@@ -96,14 +98,15 @@ var Tracer = {
         // inc[key+'.total']=1;
         // inc[key+'.date.'+date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate()]=1;
 
-        var inc = {},set = {};
-        var url = referer;
-        var date = new Date();
-        var dateString = date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate();
-        inc['list.$.total']=1;
-        inc['list.$.date.'+dateString]=1;
-        set['list.$.url']=url;
-        countDB.update({table:"unReferered"},{$inc:inc,$set:set},{upsert:true});
+        // var inc = {},set = {};
+        // var url = referer;
+        // var date = new Date();
+        // var dateString = date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate();
+        // inc['list.$.total']=1;
+        // inc['list.$.date.'+dateString]=1;
+        // set['list.$.url']=url;
+        // countDB.update({table:"unReferered"},{$inc:inc,$set:set},{upsert:true});
+        Tracer._addCount('unReferered',referer);
     },
     _addStep:function(data){
         //if(data.usersign!=99999999) tracerDB.update({tracerID:data.tracerid},{$set:{userSign:data.usersign}});
@@ -123,14 +126,15 @@ var Tracer = {
                 // var set = {};
                 // set[key+'.url']=data.pagesign;
 
-                var inc = {},set = {};
-                var url = data.pagesign;
-                var date = new Date();
-                var dateString = date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate();
-                inc['list.$.total']=1;
-                inc['list.$.date.'+dateString]=1;
-                set['list.$.url']=url;
-                countDB.update({table:"page"},{$inc:inc,$set:set},{upsert:true});
+                // var inc = {},set = {};
+                // var url = data.pagesign;
+                // var date = new Date();
+                // var dateString = date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate();
+                // inc['list.$.total']=1;
+                // inc['list.$.date.'+dateString]=1;
+                // set['list.$.url']=url;
+                // countDB.update({table:"page"},{$inc:inc,$set:set},{upsert:true});
+                Tracer._addCount('page',data.pagesign);
                 break;
             }
         }
@@ -152,20 +156,37 @@ var Tracer = {
                 // //countDB.update({table:"modify"},{$inc:inc},{upsert:true});
                 // var set = {};
                 // set[key+'.url']=value;
-                var inc = {},set = {};
-                var url = value;
-                var date = new Date();
-                var dateString = date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate();
-                inc['list.$.total']=1;
-                inc['list.$.date.'+dateString]=1;
-                set['list.$.url']=url;
-                countDB.update({table:"modify"},{$inc:inc,$set:set},{upsert:true});
+                // var inc = {},set = {};
+                // var url = value;
+                // var date = new Date();
+                // var dateString = date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate();
+                // inc['list.$.total']=1;
+                // inc['list.$.date.'+dateString]=1;
+                // set['list.$.url']=url;
+                // countDB.update({table:"modify"},{$inc:inc,$set:set},{upsert:true});
+                Tracer._addCount('modify',value);
                 break;
             }
         }
     },
-    _addCount:function(table){
-
+    _addCount:function(table,url){
+        var inc = {},set = {};
+        //var url = value;
+        var date = new Date();
+        var dateString = date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate();
+        inc['list.$.total']=1;
+        inc['list.$.date.'+dateString]=1;
+        set['list.$.url']=url;
+        countDB.update({table:table,'list.url':url},{$inc:inc,$set:set},{upsert:true},function(err){
+            if(err){
+                var push = {};
+                push[total] = 1;
+                push[date] = {};
+                push[date][dateString] = 1;
+                push[url] = url;
+                countDB.update({table:table},{$push:{list:push}},{upsert:true});
+            }
+        });
     }
 }
 
