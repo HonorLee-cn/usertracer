@@ -180,10 +180,10 @@ var Tracer = {
         countDB.update({table:table,'list.url':url},{$inc:inc,$set:set},{upsert:true},function(err){
             if(err){
                 var push = {};
-                push[total] = 1;
-                push[date] = {};
-                push[date][dateString] = 1;
-                push[url] = url;
+                push['total'] = 1;
+                push['date'] = {};
+                push['date'][dateString] = 1;
+                push['url'] = url;
                 countDB.update({table:table},{$push:{list:push}},{upsert:true});
             }
         });
