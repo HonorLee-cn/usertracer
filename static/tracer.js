@@ -42,7 +42,7 @@ $(function(){
     }
     $.ajax({
         data:data,
-        url:'https://tracer.chh.la/tracer',
+        url:'http://tracer.chh.la/tracer',
         method:'GET'
     });
 })
@@ -72,7 +72,7 @@ window.chhutracer = {
         obj.tracerid = getCookie('_tracerID');
         $.ajax({
             data:obj,
-            url:'https://tracer.chh.la/tracer/addstep',
+            url:'http://tracer.chh.la/tracer/addstep',
             method:'GET'
         });
     }
