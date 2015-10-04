@@ -113,6 +113,7 @@ var Tracer = {
         tracerDB.update({tracerID:data.tracerid,userSign:{$nin:[data.usersign]}},{$push:{userSign:data.usersign}});
         tracerDB.update({tracerID:data.tracerid},{$push:{step:{jumpTime:data.jumptime,pageSign:data.pagesign}}});
         //tracerDB.update({tracerID:data.tracerid,userSign:{$nin:data.usersign}},{$push:{userSign:data.usersign}});
+        if(!data.pagesign) return;
         for(var i in CountRules.page){
             var match = data.pagesign.match(CountRules.page[i]);
             if(match){
